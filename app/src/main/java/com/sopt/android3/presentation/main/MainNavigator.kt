@@ -13,3 +13,7 @@ fun NavController.navigateToSeohyun(){
 fun NavController.navigateToYeseul(){
     navigate("yeseul")
 }
+
+fun NavController.navigateToJotehyun(){
+    navigate("jotehyun")
+}

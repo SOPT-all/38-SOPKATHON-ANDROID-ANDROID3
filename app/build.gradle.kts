@@ -11,6 +11,14 @@ android {
     namespace = "com.sopt.android3"
     compileSdk = 35
 
+    val localProperties = Properties().apply {
+        val file = rootProject.file("local.properties")
+        if (file.exists()) load(file.inputStream())
+    }
+
+    val baseUrl = localProperties.getProperty("BASE_URL") ?: ""
+
+
     defaultConfig {
         applicationId = "com.sopt.android3"
         minSdk = 29
@@ -19,13 +27,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
-
-    val localProperties = Properties().apply {
-        val file = rootProject.file("local.properties")
-        if (file.exists()) load(file.inputStream())
-    }
-    val baseUrl = localProperties.getProperty("BASE_URL") ?: ""
 
     buildTypes {
         release {
@@ -69,6 +72,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.coil.compose)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
