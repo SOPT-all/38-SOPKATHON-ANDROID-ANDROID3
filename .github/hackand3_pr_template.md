@@ -1,3 +1,13 @@
+---
+name: hackand3_pr_template
+about: Describe this pr template's purpose here.
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+
 ## 🔗 Related Issue
 
 - close #이슈번호
