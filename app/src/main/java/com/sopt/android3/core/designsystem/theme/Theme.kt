@@ -13,10 +13,14 @@ object SopkathonTheme {
     val colors: SopkathonColor
         @Composable
         get() = LocalSopkathonColor.current
+
+    val typography: SopkathonTypography
+        @Composable
+        get() = LocalSopkathonTypography.current
 }
 
 @Composable
-fun ProvideSopkathonColorsAndTypographt(
+fun ProvideSopkathonColorsAndTypography(
     colors: SopkathonColor,
     typography: SopkathonTypography,
     content: @Composable () -> Unit,
@@ -32,7 +36,7 @@ fun ProvideSopkathonColorsAndTypographt(
 fun SopkathonTheme(
     content: @Composable () -> Unit,
 ) {
-    ProvideSopkathonColorsAndTypographt(
+    ProvideSopkathonColorsAndTypography(
         colors = defaultSopkathonColor,
         typography = defaultSopkathonTypography,
     ) {
