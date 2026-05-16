@@ -1,5 +1,6 @@
 package com.sopt.android3.core.designsystem.component.card
 
+import android.R.attr.label
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -13,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.android3.core.designsystem.theme.LocalSopkathonTypography
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
@@ -23,7 +25,7 @@ fun Hashtag(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(50))
-            .background(Color.White)
+            .background(SopkathonTheme.colors.gray50)
             .padding(
                 vertical = 4.dp,
                 horizontal = 16.dp
@@ -32,7 +34,8 @@ fun Hashtag(
     ) {
         Text(
             text = label,
-            fontSize = 14.sp
+            style = LocalSopkathonTypography.current.bodyM14,
+            color = SopkathonTheme.colors.gray700
         )
     }
 }
