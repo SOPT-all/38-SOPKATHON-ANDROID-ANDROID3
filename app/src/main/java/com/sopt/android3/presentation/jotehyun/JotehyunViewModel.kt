@@ -1,5 +1,6 @@
 package com.sopt.android3.presentation.jotehyun
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.android3.data.network.ServicePool
