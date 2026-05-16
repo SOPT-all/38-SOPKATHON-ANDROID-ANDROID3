@@ -54,7 +54,7 @@ fun BottomBar(
                 )
 
                 Text(
-                    text = "망각하기",
+                    text = "기억 남기기",
                     style = SopkathonTheme.typography.labelM12,
                     color = if(onSelected == 0) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -48,6 +49,7 @@ fun JotehyunRoute(
         uiState = uiState,
         onValueChange = { viewModel.onChangedValue(it) },
         navigateToTehoon = navigateToTehoon,
+        postTehoon = { viewModel.tehoonPost() }
     )
 }
 
@@ -56,7 +58,8 @@ fun JotehyunScreen(
     uiState: TehoonUiState,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
-    navigateToTehoon: () -> Unit
+    navigateToTehoon: () -> Unit,
+    postTehoon:() -> Unit
 ) {
     Box(
         modifier = modifier
@@ -106,45 +109,60 @@ fun JotehyunScreen(
             Spacer(modifier = Modifier.height(70.dp))
         }
 
-        Box(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(264.dp)
-                .clip(shape = RoundedCornerShape(30.dp))
                 .align(Alignment.BottomCenter)
-                .background(color = SopkathonTheme.colors.gray100),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
+                .imePadding()
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(264.dp)
+                    .clip(shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp))
+                    .background(color = SopkathonTheme.colors.gray100),
+                contentAlignment = Alignment.Center
             ) {
-                TextField(
-                    label = "어떤 공감의 말을 남기고 싶나요?",
-                    value = uiState.textfieldText,
-                    onValueChange = { onValueChange(it) }
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Button(
-                        text = "취소",
-                        onClick = { },
-                        variant = ButtonVariant.SECONDARY,
-                        modifier = Modifier.height(46.dp).weight(1f)
+                    TextField(
+                        label = "어떤 공감의 말을 남기고 싶나요?",
+                        value = uiState.textfieldText,
+                        onValueChange = { onValueChange(it) }
                     )
 
-                    Button(
-                        text = "전하기",
-                        onClick = { viewModel() },
-                        variant = ButtonVariant.PRIMARY,
-                        modifier = Modifier.height(46.dp).weight(1f)
-                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Button(
+                            text = "취소",
+                            onClick = { },
+                            variant = ButtonVariant.SECONDARY,
+                            modifier = Modifier
+                                .height(46.dp)
+                                .weight(1f)
+                        )
+
+                        Button(
+                            text = "전하기",
+                            onClick = {
+                                postTehoon()
+                                navigateToTehoon()
+                            },
+                            variant = ButtonVariant.PRIMARY,
+                            modifier = Modifier
+                                .height(46.dp)
+                                .weight(1f)
+                        )
+                    }
                 }
             }
         }
@@ -168,7 +186,8 @@ private fun JotehyunScreenPreview() {
                 isSuccess = true
             ),
             navigateToTehoon = { },
-            onValueChange = { }
+            onValueChange = { },
+            postTehoon = { },
         )
     }
 }

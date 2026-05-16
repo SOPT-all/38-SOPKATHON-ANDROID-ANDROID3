@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -69,42 +70,67 @@ fun TehoonScreen(
     ) {
         LogoTopBar(
             onClick = { navigateToSeohyun() },
-            modifier = Modifier.fillMaxWidth().height(56.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
         )
 
+        // TopBar와 BottomBar 사이의 모든 공간을 차지하는 컨테이너
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             contentAlignment = Alignment.Center
         ) {
-            LongTabCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp),
-                nickname = "익명 ${uiState.gomin.postId}",
-                content = uiState.gomin.content,
-                thumbnail = getServerImageResourceId(uiState.gomin.postId),
-                hashtags = uiState.gomin.hashtags,
-                onClickAction = { navigateToSeohyun() },
-                onLongClickAction = onLongClickAction
-            )
+            if (uiState.isLoading) {
+                // 로딩 중일 때는 인디케이터만 중앙에 표시
+                CircularProgressIndicator(
+                    color = SopkathonTheme.colors.gray400
+                )
+            } else {
+                // 로딩이 완료되면 카드와 텍스트, 버튼을 표시
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        LongTabCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 20.dp),
+                            nickname = "익명 ${uiState.gomin.postId}", // 실제 postId 사용 부분
+                            content = uiState.gomin.content,
+                            thumbnail = getServerImageResourceId(uiState.gomin.postId),
+                            pressedTumbnail = getServerPressedImageResourceId(uiState.gomin.postId),
+                            hashtags = uiState.gomin.hashtags,
+                            onLongClickAction = onLongClickAction
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "길게 누르면 다음 기억으로 넘어가요",
+                        style = SopkathonTheme.typography.labelM12,
+                        color = SopkathonTheme.colors.gray400
+                    )
+
+                    Spacer(modifier = Modifier.height(17.dp))
+
+                    Button(
+                        text = "소각 도와주기",
+                        onClick = { navigateToJotehyun() }
+                    )
+
+                    Spacer(modifier = Modifier.height(30.dp))
+                }
+            }
         }
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Text(
-            text = "길게 누르면 다음 기억으로 넘어가요",
-            style = SopkathonTheme.typography.labelM12,
-            color = SopkathonTheme.colors.gray400
-        )
-
-        Spacer(modifier = Modifier.height(17.dp))
-
-        Button(
-            text = "소각 도와주기",
-            onClick = { navigateToJotehyun() }
-        )
 
         BottomBar(
             modifier = Modifier.fillMaxWidth(),
@@ -122,8 +148,8 @@ fun LongTabCard(
     nickname: String,
     content: String,
     @DrawableRes thumbnail: Int,
+    @DrawableRes pressedTumbnail: Int,
     hashtags: List<String>,
-    onClickAction: () -> Unit,
     onLongClickAction: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -133,7 +159,7 @@ fun LongTabCard(
         modifier = modifier.combinedClickable(
             interactionSource = interactionSource,
             indication = null,
-            onClick = onClickAction,
+            onClick = {  },
             onLongClick = onLongClickAction
         )
     ) {
@@ -141,7 +167,7 @@ fun LongTabCard(
             PressCard(
                 nickname = nickname,
                 content = content,
-                thumbnail = thumbnail,
+                thumbnail = pressedTumbnail,
                 hashtags = hashtags
             )
         } else {
@@ -158,17 +184,34 @@ fun LongTabCard(
 @DrawableRes
 fun getServerImageResourceId(id: Int): Int {
     return when (id) {
-        1 -> R.drawable.img_card_01
-        2 -> R.drawable.img_card_02
-        3 -> R.drawable.img_card_03
-        4 -> R.drawable.img_card_04
-        5 -> R.drawable.img_card_05
-        6 -> R.drawable.img_card_06
-        7 -> R.drawable.img_card_07
-        8 -> R.drawable.img_card_08
-        9 -> R.drawable.img_card_09
-        10 -> R.drawable.img_card_10
-        else -> R.drawable.img_card_01
+        1 -> R.drawable.img_default_01
+        2 -> R.drawable.img_default_02
+        3 -> R.drawable.img_default_03
+        4 -> R.drawable.img_default_01
+        5 -> R.drawable.img_default_02
+        6 -> R.drawable.img_default_03
+        7 -> R.drawable.img_default_01
+        8 -> R.drawable.img_default_02
+        9 -> R.drawable.img_default_03
+        10 -> R.drawable.img_default_01
+        else -> R.drawable.img_default_01
+    }
+}
+
+@DrawableRes
+fun getServerPressedImageResourceId(id: Int): Int {
+    return when (id) {
+        1 -> R.drawable.img_pressed_01
+        2 -> R.drawable.img_pressed_02
+        3 -> R.drawable.img_pressed_03
+        4 -> R.drawable.img_pressed_01
+        5 -> R.drawable.img_pressed_02
+        6 -> R.drawable.img_pressed_03
+        7 -> R.drawable.img_pressed_01
+        8 -> R.drawable.img_pressed_02
+        9 -> R.drawable.img_pressed_03
+        10 -> R.drawable.img_pressed_01
+        else -> R.drawable.img_pressed_01
     }
 }
 
