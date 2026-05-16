@@ -102,11 +102,11 @@ class TehoonViewModel : ViewModel() {
     fun changeToNextGomin() {
         if (currentPosts.isEmpty()) return
 
-        currentPostIndex = (currentPostIndex + 1) % dummyPosts.size
+        currentPostIndex = (currentPostIndex + 1) % currentPosts.size
 
         _uiState.update { currentState ->
             currentState.copy(
-                gomin = dummyPosts[currentPostIndex]
+                gomin = currentPosts[currentPostIndex]
             )
         }
     }
