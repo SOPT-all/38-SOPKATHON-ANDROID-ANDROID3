@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.sopt.android3.BuildConfig
 import com.sopt.android3.data.service.ExampleService
 import com.sopt.android3.data.service.HomeService
+import com.sopt.android3.data.service.SeohyunService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -39,4 +40,5 @@ object ApiFactory {
 object ServicePool {
     val exampleService = ApiFactory.create<ExampleService>()
     val homeService = ApiFactory.create<HomeService>()
+    val SeohyunService = ApiFactory.create< SeohyunService>()
 }
