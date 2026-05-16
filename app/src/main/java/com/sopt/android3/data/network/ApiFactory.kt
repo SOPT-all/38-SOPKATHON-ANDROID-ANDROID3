@@ -5,6 +5,8 @@ import com.sopt.android3.BuildConfig
 import com.sopt.android3.data.service.ExampleService
 import com.sopt.android3.data.service.HomeService
 import com.sopt.android3.data.service.SeohyunService
+import com.sopt.android3.data.service.TehoonGetService
+import com.sopt.android3.data.service.TehoonService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -41,4 +43,6 @@ object ServicePool {
     val exampleService = ApiFactory.create<ExampleService>()
     val homeService = ApiFactory.create<HomeService>()
     val SeohyunService = ApiFactory.create< SeohyunService>()
+    val tehoonService = ApiFactory.create<TehoonService>()
+    val tehoonGetService = ApiFactory.create<TehoonGetService>()
 }

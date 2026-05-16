@@ -1,4 +1,4 @@
-package com.sopt.android3.core.designsystem.component.card
+package com.sopt.android3.presentation.tehoon.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -22,10 +22,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.android3.R
+import com.sopt.android3.core.designsystem.component.card.Hashtag
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
-fun Card(
+fun PressCard(
     nickname: String,
     content: String,
     @DrawableRes thumbnail: Int,
@@ -55,7 +56,7 @@ fun Card(
         ) {
             Text(
                 text = "${nickname}의 소거하고 싶은 고민",
-                color = SopkathonTheme.colors.gray100,
+                color = SopkathonTheme.colors.gray700,
                 style = SopkathonTheme.typography.labelM12
             )
 
@@ -66,7 +67,7 @@ fun Card(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 hashtags.forEach { tag ->
-                    Hashtag(label = tag)
+                    PressHashtag(label = tag)
                 }
             }
 
@@ -74,7 +75,7 @@ fun Card(
 
             Text(
                 text = content,
-                color = SopkathonTheme.colors.gray100,
+                color = SopkathonTheme.colors.gray700,
                 style = SopkathonTheme.typography.titleM18
             )
         }
@@ -83,9 +84,9 @@ fun Card(
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
-private fun CardPreview() {
+private fun PressCardPreview() {
     SopkathonTheme {
-        Card(
+        PressCard(
             nickname = "익명A",
             content = "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
             thumbnail = R.drawable.img_card,

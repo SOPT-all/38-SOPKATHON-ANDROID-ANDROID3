@@ -16,9 +16,8 @@ class JotehyunViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(JotehyunUiState())
     val uiState: StateFlow<JotehyunUiState> = _uiState.asStateFlow()
 
-    private fun example() {
+    private fun tehoonPost() {
         viewModelScope.launch {
-            //request 는 따로 데이터 담아서 보내면 되고, 이런식으로 service 객체에서 함수 뽑아 쓰면 됩니다
 //            val response = exampleService.postExampleData(request)
 
             try{
