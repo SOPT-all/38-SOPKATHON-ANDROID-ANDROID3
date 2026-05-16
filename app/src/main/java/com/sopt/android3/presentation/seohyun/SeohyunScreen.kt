@@ -1,5 +1,8 @@
 package com.sopt.android3.presentation.seohyun
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -115,7 +118,17 @@ fun SeohyunScreen(
                     verticalArrangement = Arrangement.spacedBy(23.dp)
                 ) {
                     items(uiState.posts, key = { it.postId }) { post ->
-                        PostBundle(post = post)
+                        PostBundle(
+                            post = post,
+                            onBurnClick = viewModel::burnTopPost,
+                            modifier = Modifier.animateItem(
+                                fadeOutSpec = tween(durationMillis = 800),
+                                placementSpec = spring(
+                                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                                    stiffness = Spring.StiffnessMediumLow
+                                )
+                            )
+                        )
                     }
                     item { Spacer(modifier = Modifier.height(10.dp)) }
                 }
@@ -132,13 +145,12 @@ private val dummyUserIds = listOf(
 @Composable
 private fun PostBundle(
     post: PostUiModel,
+    onBurnClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // 번들 내부 아이템 간격: 10dp
-    // 버튼 → 다음 카드 간격은 LazyColumn의 spacedBy(32dp)만 적용 (중복 없음)
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         SeohyunCard(
             content = post.content,
@@ -156,12 +168,10 @@ private fun PostBundle(
             )
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
-
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(
                 onClick = {},
-                modifier = Modifier.weight(1f).heightIn(46.dp),
+                modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = SopkathonTheme.colors.gray300
@@ -175,8 +185,8 @@ private fun PostBundle(
             }
             Spacer(modifier = Modifier.width(10.dp))
             Button(
-                onClick = {},
-                modifier = Modifier.weight(1f).heightIn(46.dp),
+                onClick = onBurnClick,
+                modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = SopkathonTheme.colors.primary500

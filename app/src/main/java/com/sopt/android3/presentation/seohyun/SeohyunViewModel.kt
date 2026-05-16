@@ -19,6 +19,10 @@ class SeohyunViewModel : ViewModel() {
         fetchMyPosts()
     }
 
+    fun burnTopPost() {
+        _uiState.update { it.copy(posts = it.posts.drop(1)) }
+    }
+
     private fun fetchMyPosts() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
@@ -29,7 +33,7 @@ class SeohyunViewModel : ViewModel() {
                 val posts = response.data.posts.map { post ->
                     PostUiModel(
                         postId = post.postId,
-                        title = post.title,
+                        title = post.title ?: "",
                         content = post.content,
                         reactions = post.reactions,
                     )

@@ -24,7 +24,7 @@ data class SeohyunPostDTO(
     @SerialName("postId")
     val postId: Int,
     @SerialName("title")
-    val title: String,
+    val title: String?,
     @SerialName("content")
     val content: String,
     @SerialName("reactions")
