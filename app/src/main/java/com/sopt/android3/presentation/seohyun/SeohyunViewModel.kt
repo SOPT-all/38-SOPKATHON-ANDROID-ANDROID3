@@ -19,8 +19,8 @@ class SeohyunViewModel : ViewModel() {
         fetchMyPosts()
     }
 
-    fun burnTopPost() {
-        _uiState.update { it.copy(posts = it.posts.drop(1)) }
+    fun burnPost(postId: Int) {
+        _uiState.update { it.copy(posts = it.posts.filter { post -> post.postId != postId }) }
     }
 
     private fun fetchMyPosts() {
