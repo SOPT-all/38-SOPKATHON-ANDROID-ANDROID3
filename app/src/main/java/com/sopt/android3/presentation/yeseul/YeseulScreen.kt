@@ -86,22 +86,22 @@ fun YeseulScreen(
             modifier = Modifier.align(Alignment.TopCenter)
         )
 
-        Text(
-            text = "반가워요, 올해 여름\n잊고 싶은 기억이 있나요?",
-            color = SopkathonTheme.colors.primary500,
-            style = SopkathonTheme.typography.titleSB22,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 250.dp)
-        )
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .imePadding()
         ) {
+            Text(
+                text = "반가워요, 올해 여름\n잊고 싶은 기억이 있나요?",
+                color = SopkathonTheme.colors.primary500,
+                style = SopkathonTheme.typography.titleSB22,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = if (isKeyboardVisible) 100.dp else 250.dp)
+            )
+
             TextField(
                 label = "어떤 기억인가요?",
                 value = text,
@@ -112,6 +112,7 @@ fun YeseulScreen(
                 onSubmitClick = {
                     onFormSubmit(text)
                     text = ""
+                    navigateToTehoon()
                 }
             )
 
