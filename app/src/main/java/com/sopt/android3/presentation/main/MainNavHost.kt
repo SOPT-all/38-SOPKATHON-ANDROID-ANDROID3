@@ -41,8 +41,7 @@ fun MainNavHost(
             composable(route = "yeseul") {
                 YeseulRoute(
                     navigateToSeohyun = { navController.navigateToSeohyun() },
-                    navigateToTehoon = { navController.navigateToTehoon()},
-                    navigateToJotehyun = { navController.navigateToJotehyun() },
+                    navigateToTehoon = { navController.navigateToTehoon()}
                 )
             }
 

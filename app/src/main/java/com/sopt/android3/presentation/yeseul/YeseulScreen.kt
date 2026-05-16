@@ -13,13 +13,11 @@ import com.sopt.android3.core.util.noRippleClickable
 @Composable
 fun YeseulRoute(
     navigateToSeohyun:() -> Unit,
-    navigateToTehoon:() -> Unit,
-    navigateToJotehyun:() -> Unit
+    navigateToTehoon:() -> Unit
 ) {
     YeseulScreen(
         navigateToSeohyun = navigateToSeohyun,
         navigateToTehoon = navigateToTehoon,
-        navigateToJotehyun = navigateToJotehyun,
     )
 }
 
@@ -28,7 +26,6 @@ fun YeseulScreen(
     modifier: Modifier = Modifier,
     navigateToSeohyun: () -> Unit = {},
     navigateToTehoon: () -> Unit = {},
-    navigateToJotehyun: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
