@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,6 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.ImagePainter
+import com.sopt.android3.R
+import com.sopt.android3.core.designsystem.component.card.Card
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 import com.sopt.android3.core.util.noRippleClickable
 
@@ -46,20 +49,18 @@ fun SeohyunScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = SopkathonTheme.colors.white)
+                    .background(color = SopkathonTheme.colors.staticwhite)
             ) {
                 Column(
                     modifier = Modifier.padding(top = 30.dp)
                 ) {
-                    Row {
-                        Text(text = "#슬픔")
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "#그리움")
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text("제목")
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text("본문")
+                    Card(
+                        nickname = "익명A",
+                        content = "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
+                        thumbnail = R.drawable.img_card,
+                        hashtags = listOf("슬픔", "그리움"),
+                        modifier = Modifier.height(486.dp)
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
