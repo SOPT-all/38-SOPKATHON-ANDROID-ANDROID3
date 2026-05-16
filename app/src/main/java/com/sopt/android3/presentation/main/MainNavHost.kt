@@ -22,29 +22,32 @@ fun MainNavHost(
     ) {
         NavHost(
             navController = navController,
-            startDestination = "tehoon",
+            startDestination = "yeseul",
         ) {
             composable(route = "tehoon") {
                 TehoonRoute(
-                    navigateToSeohyun = { navController.navigateToSeohyun() }
+                    navigateToSeohyun = { navController.navigateToSeohyun() },
+                    navigateToYeseul = { navController.navigateToYeseul()},
+                    navigateToJotehyun = { navController.navigateToJotehyun() },
                 )
             }
 
             composable(route = "seohyun") {
                 SeohyunRoute(
-                    navigateToYeseul = { navController.navigateToYeseul() }
+                    navigateToYeseul = { navController.popBackStack() },
                 )
             }
 
             composable(route = "yeseul") {
                 YeseulRoute(
-                    navigateToJotehyun = { navController.navigateToJotehyun() }
+                    navigateToSeohyun = { navController.navigateToSeohyun() },
+                    navigateToTehoon = { navController.navigateToTehoon()}
                 )
             }
 
             composable(route = "jotehyun") {
                 JotehyunRoute(
-                    navigateToTehoon = { navController.navigateToTehoon() },
+                    navigateToTehoon = { navController.popBackStack() },
                 )
             }
         }
