@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
@@ -30,6 +32,7 @@ fun TextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    onSubmitClick: (() -> Unit)? = null
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
@@ -40,7 +43,7 @@ fun TextField(
     }
 
     val backgroundColor = if (isFocused) {
-        SopkathonTheme.colors.gray50
+        Color.Transparent
     } else {
         SopkathonTheme.colors.gray100
     }
@@ -63,7 +66,6 @@ fun TextField(
         )
 
         Spacer(modifier = Modifier.height(6.dp))
-
 
         BasicTextField(
             value = value,
@@ -115,13 +117,35 @@ fun TextField(
             },
             textStyle = inputTextStyle,
         )
+
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text(
-            text = "메시지에 마침표를 찍으세요.",
-            color = SopkathonTheme.colors.gray400,
-            style = SopkathonTheme.typography.labelR12
-        )
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = "메시지에 마침표를 찍으세요.",
+                color = SopkathonTheme.colors.gray400,
+                style = SopkathonTheme.typography.labelR12
+            )
+
+            if (onSubmitClick != null) {
+                val isReady = value.isNotEmpty()
+
+                Button(
+                    text = "전송하기",
+                    onClick = {
+                        if (isReady) onSubmitClick()
+                    },
+                    variant = ButtonVariant.PRIMARY,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .graphicsLayer {
+                            alpha = if (isReady) 1f else 0f
+                        }
+                )
+            }
+        }
     }
 }
 
