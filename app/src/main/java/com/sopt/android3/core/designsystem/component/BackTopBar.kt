@@ -5,16 +5,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.android3.R
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
@@ -25,7 +26,11 @@ fun BackTopBar(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(
+                vertical = 10.dp,
+                horizontal = 12.dp
+            ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -34,8 +39,9 @@ fun BackTopBar(
             modifier = Modifier,
         ) {
             Icon(
-                imageVector = Icons.Filled.KeyboardArrowDown, // 뒤로가기
+                imageVector = ImageVector.vectorResource(R.drawable.ic_header_chevron),
                 contentDescription = null,
+                modifier = Modifier.size(24.dp)
             )
         }
 
@@ -45,8 +51,9 @@ fun BackTopBar(
                 modifier = Modifier,
             ) {
                 Icon(
-                    imageVector = Icons.Filled.AccountCircle, // 내 기록
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_header_send),
                     contentDescription = null,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
@@ -58,7 +65,7 @@ fun BackTopBar(
 private fun BackTopBarPreview() {
     SopkathonTheme {
         Column(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier,
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             // 프로필 버튼 없음
