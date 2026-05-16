@@ -124,6 +124,11 @@ fun SeohyunScreen(
     }
 }
 
+private val dummyUserIds = listOf(
+    "익명_gk", "익명_jd", "익명_dk", "익명_gk", "익명_wi",
+    "익명_qo", "익명_jo", "익명_ko", "익명_di", "익명_fj"
+)
+
 @Composable
 private fun PostBundle(
     post: PostUiModel,
@@ -143,8 +148,9 @@ private fun PostBundle(
                 .aspectRatio(320f / 229f)
         )
 
-        post.reactions.forEach { reaction ->
+        post.reactions.forEachIndexed { index, reaction ->
             ReactionCard(
+                userId = dummyUserIds[index % dummyUserIds.size],
                 reaction = reaction,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -230,6 +236,7 @@ private fun SeohyunCard(
 
 @Composable
 private fun ReactionCard(
+    userId: String,
     reaction: String,
     modifier: Modifier = Modifier,
 ) {
@@ -251,7 +258,7 @@ private fun ReactionCard(
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(
-                "TODO: 사용자 더미 데이터",
+                userId,
                 style = SopkathonTheme.typography.labelM12,
                 color = SopkathonTheme.colors.gray700
             )
