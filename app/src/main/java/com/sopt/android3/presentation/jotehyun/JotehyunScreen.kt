@@ -28,7 +28,7 @@ fun JotehyunScreen(
         modifier = modifier
             .fillMaxSize()
             .background(
-                color = SopkathonTheme.colors.white
+                color = SopkathonTheme.colors.gray400
             )
     ) {
         Text(
