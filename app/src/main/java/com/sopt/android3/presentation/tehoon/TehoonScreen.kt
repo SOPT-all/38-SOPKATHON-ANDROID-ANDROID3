@@ -12,9 +12,13 @@ import com.sopt.android3.core.util.noRippleClickable
 
 @Composable
 fun TehoonRoute(
-    navigateToSeohyun: () -> Unit
+    navigateToYeseul: () -> Unit,
+    navigateToJotehyun: () -> Unit,
+    navigateToSeohyun: () -> Unit,
 ) {
     TehoonScreen(
+        navigateToYeseul = navigateToYeseul,
+        navigateToJotehyun = navigateToYeseul,
         navigateToSeohyun = navigateToSeohyun,
     )
 }
@@ -22,6 +26,8 @@ fun TehoonRoute(
 @Composable
 fun TehoonScreen(
     modifier: Modifier = Modifier,
+    navigateToYeseul: () -> Unit = {},
+    navigateToJotehyun: () -> Unit = {},
     navigateToSeohyun: () -> Unit = {}
 ) {
     Box(
