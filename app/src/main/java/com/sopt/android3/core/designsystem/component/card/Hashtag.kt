@@ -22,15 +22,15 @@ fun Hashtag(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(50))
-            .background(Color.LightGray)
+            .background(Color.White)
             .padding(
-                vertical = 1.dp,
-                horizontal = 10.dp
+                vertical = 4.dp,
+                horizontal = 16.dp
             ),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "#${label}",
+            text = label
         )
     }
 }
