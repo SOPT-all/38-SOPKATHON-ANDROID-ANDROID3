@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.sopt.android3.core.designsystem.theme.LocalSopkathonTypography
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 import com.sopt.android3.core.util.noRippleClickable
 
@@ -48,7 +47,7 @@ fun Button(
         Text(
             text = text,
             color = SopkathonTheme.colors.gray50,
-            style = LocalSopkathonTypography.current.bodySB16
+            style = SopkathonTheme.typography.bodySB16
         )
     }
 }
