@@ -71,6 +71,13 @@
 
 --
 
-## 🍪 5. 안드로이드 팀원들의 사진 (before)
+## 🍪 5. 안드로이드 팀원들의 사진
 
-<img width="1546" height="2061" alt="image" src="https://github.com/user-attachments/assets/03994b84-8135-4136-b36b-14ffb9071587" />
+| 전 | 후 |
+|----|----|
+| <img width="1546" height="2061" alt="image" src="https://github.com/user-attachments/assets/03994b84-8135-4136-b36b-14ffb9071587" /> | <img width="1493" height="1991" alt="image" src="https://github.com/user-attachments/assets/ca3abcb6-176b-4bba-be49-e4f7a637aff5" /> |
+
+--
+
+## 🎥 6. 시연 영상
+
