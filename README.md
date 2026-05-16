@@ -1,8 +1,8 @@
 # 🚀 프로젝트 이름 (Service Name)
-> ### Blur
+### Blur
 
 ## 📌 1. 간단한 소개 (Service Brief)
-> "익명으로 고민과 후회를 남기고, 사람들의 답장을 받은 뒤 사라지게 하며 감정을 가볍게 털어내는 서비스, **Blur**"
+"익명으로 고민과 후회를 남기고, 사람들의 답장을 받은 뒤 사라지게 하며 감정을 가볍게 털어내는 서비스, **Blur**"
 
 </br>
 
@@ -80,4 +80,7 @@
 --
 
 ## 🎥 6. 시연 영상
+
+https://github.com/user-attachments/assets/1bf009af-fe9a-406b-9ccf-9ee61a415c37
+
 
