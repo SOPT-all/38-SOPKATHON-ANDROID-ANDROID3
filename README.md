@@ -12,11 +12,12 @@
 
 ## 👥 2. 팀원 및 역할 분담 (Team & Roles)
 
-|👑 안태훈 | 송서현 | 조예슬
-|:---------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
-| <img width="200px" src="https://avatars.githubusercontent.com/u/113279387?v=4"/> | <img width="200px" src="https://avatars.githubusercontent.com/u/108921606?v=4"/> | <img width="200px" src="https://avatars.githubusercontent.com/u/130419090?v=4"/> | <img width="200px" src="https://avatars.githubusercontent.com/u/150934431?v=4"/> |
-|`서비스 예약` | `헬퍼 정보 보기` | `진행률 확인` | `헬퍼 리스트` |
 <br>
+
+| 👑안태훈 | 송서현 | 조예슬 |
+|-------|-------|-------|
+| <img width="200" height="250" alt="image" src="https://github.com/user-attachments/assets/13d120ca-f354-4770-8cf0-002959c7d62c" /> | <img width="200" height="280" alt="image" src="https://github.com/user-attachments/assets/e93551ee-4251-4d46-83e0-4224c995f06f" /> | <img width="200" height="250" alt="화면 캡처 2026-05-16 224452" src="https://github.com/user-attachments/assets/12a9c4ff-b0db-4eee-b087-d1ffdba25144" /> |
+| `메인 화면` | `  ` | `   ` |
 
 ---
 
