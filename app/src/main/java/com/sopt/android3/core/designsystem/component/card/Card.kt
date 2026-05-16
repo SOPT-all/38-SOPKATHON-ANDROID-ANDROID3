@@ -1,5 +1,7 @@
 package com.sopt.android3.core.designsystem.component.card
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,38 +16,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.android3.R
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
 fun Card(
     nickname: String,
-    title: String,
     content: String,
-//    @DrawableRes thumbnail: Int,
+    @DrawableRes thumbnail: Int,
+    hashtags: List<String>,
     modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
     ) {
-//        Image(
-//            painter = painterResource(id = thumbnail),
-//            contentDescription = null,
-//            modifier = Modifier.matchParentSize(),
-//            contentScale = ContentScale.Crop
-//        )
+        Image(
+            painter = painterResource(id = thumbnail),
+            contentDescription = null,
+            modifier = Modifier.matchParentSize(),
+            contentScale = ContentScale.Crop
+        )
 
         Column(
+            verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .background(Color.Gray)
+                .matchParentSize()
+                .background(
+                    color = Color.Black.copy(alpha = 0.73f)
+                )
                 .padding(
                     vertical = 30.dp,
                     horizontal = 26.dp,
                 ),
-            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = "${nickname}의 소거하고 싶은 고민",
@@ -59,30 +67,32 @@ fun Card(
                 modifier = Modifier,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
-                Hashtag(label = "슬픔")
-                Hashtag(label = "그리움")
+                hashtags.forEach { tag ->
+                    Hashtag(label = tag)
+                }
             }
 
-            Text(
-                text = title,
-            )
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = content,
+                color = Color.White,
+                fontSize = 18.sp,
             )
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
 private fun CardPreview() {
     SopkathonTheme {
         Card(
             nickname = "익명A",
-            title = "전남친과 헤어졌는데 너무 슬프다",
             content = "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-            modifier = Modifier.height(320.dp)
+            thumbnail = R.drawable.img_card,
+            hashtags = listOf("슬픔", "그리움"),
+            modifier = Modifier.height(486.dp)
         )
     }
 }
