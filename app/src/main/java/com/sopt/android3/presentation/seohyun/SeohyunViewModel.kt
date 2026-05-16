@@ -9,30 +9,52 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class SeohyunViewModel: ViewModel() {
-    // 이거 ServicePool에서 꺼내는 Service 만들어서 써야돼요! 이거 바꿔야됨 (변수명도 바꿔주세용)
-    private val exampleServce = ServicePool.exampleService
+class SeohyunViewModel : ViewModel() {
+    private val userPostService = ServicePool.SeohyunService
+
     private val _uiState = MutableStateFlow(SeohyunUiState())
     val uiState: StateFlow<SeohyunUiState> = _uiState.asStateFlow()
 
-    private fun example() {
+    init {
+        fetchMyPosts()
+    }
+
+    fun burnTopPost() {
+        _uiState.update { it.copy(posts = it.posts.drop(1)) }
+    }
+
+    private fun fetchMyPosts() {
         viewModelScope.launch {
-            //request 는 따로 데이터 담아서 보내면 되고, 이런식으로 service 객체에서 함수 뽑아 쓰면 됩니다
-//            val response = exampleService.postExampleData(request)
+            _uiState.update { it.copy(isLoading = true, error = null) }
 
-            try{
+            try {
+                val response = userPostService.getUserPosts()
 
+                val posts = response.data.posts.map { post ->
+                    PostUiModel(
+                        postId = post.postId,
+                        title = post.title ?: "",
+                        content = post.content,
+                        reactions = post.reactions,
+                    )
+                }
+
+                _uiState.update {
+                    it.copy(
+                        posts = posts,
+                        isLoading = false,
+                        isSuccess = true,
+                    )
+                }
             } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
                         isLoading = false,
                         isSuccess = false,
-                        error = e.message ?: "example failed"
+                        error = e.message ?: "게시글 조회 실패",
                     )
                 }
             }
         }
     }
 }
-
-
