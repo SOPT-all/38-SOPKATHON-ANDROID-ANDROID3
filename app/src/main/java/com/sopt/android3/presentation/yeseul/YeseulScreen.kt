@@ -37,7 +37,6 @@ fun YeseulScreen(
         Text(
             text = "Yeseul Screen",
             modifier = Modifier
-                .noRippleClickable(onClick = navigateToJotehyun)
         )
     }
 }
