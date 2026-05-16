@@ -1,7 +1,9 @@
 package com.sopt.android3.presentation.tehoon
 
+import com.sopt.android3.presentation.gominModel
+
 data class TehoonUiState(
-    val title: String = "",
+    val gomin: gominModel,
 
     val isLoading: Boolean = false,
     val error: String? = null,

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +35,7 @@ fun PressCard(
 ) {
     Box(
         modifier = modifier
+            .fillMaxSize()
             .clip(RoundedCornerShape(12.dp))
     ) {
         Image(
@@ -47,9 +49,6 @@ fun PressCard(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .matchParentSize()
-                .background(
-                    color = Color.Black.copy(alpha = 0.73f)
-                )
                 .padding(
                     vertical = 30.dp,
                     horizontal = 26.dp,
@@ -57,7 +56,7 @@ fun PressCard(
         ) {
             Text(
                 text = "${nickname}의 소거하고 싶은 고민",
-                color = SopkathonTheme.colors.gray100,
+                color = SopkathonTheme.colors.gray700,
                 style = SopkathonTheme.typography.labelM12
             )
 
@@ -68,7 +67,7 @@ fun PressCard(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
                 hashtags.forEach { tag ->
-                    Hashtag(label = tag)
+                    PressHashtag(label = tag)
                 }
             }
 
@@ -76,7 +75,7 @@ fun PressCard(
 
             Text(
                 text = content,
-                color = SopkathonTheme.colors.gray100,
+                color = SopkathonTheme.colors.gray700,
                 style = SopkathonTheme.typography.titleM18
             )
         }
