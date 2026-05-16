@@ -24,6 +24,7 @@ import com.sopt.android3.core.util.noRippleClickable
 @Composable
 fun BottomBar(
     modifier: Modifier = Modifier,
+    onSelected: Int, //1 = 왼쪽 셀렉 / 0 = 오른쪽 셀렉(색깔지정)
     onLeftClick: () -> Unit,
     onRightClick: () -> Unit,
 ) {
@@ -45,12 +46,15 @@ fun BottomBar(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Home, // 뒤로가기
+                    imageVector = Icons.Filled.Home,
                     contentDescription = null,
+                    tint = if(onSelected == 0) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
 
                 Text(
                     text = "망각하기",
+                    style = SopkathonTheme.typography.labelM12,
+                    color = if(onSelected == 0) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
             }
         }
@@ -68,10 +72,13 @@ fun BottomBar(
                 Icon(
                     imageVector = Icons.Filled.AddCircle,
                     contentDescription = null,
+                    tint = if(onSelected == 1) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
 
                 Text(
                     text = "소각해주기",
+                    style = SopkathonTheme.typography.labelM12,
+                    color = if(onSelected == 1) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
             }
         }
@@ -85,6 +92,7 @@ private fun BottomBarPreview() {
         Column() {
             BottomBar(
                 modifier = Modifier,
+                onSelected = 0,
                 onLeftClick = {},
                 onRightClick = {}
             )
@@ -93,6 +101,7 @@ private fun BottomBarPreview() {
 
             BottomBar(
                 modifier = Modifier,
+                onSelected = 1,
                 onLeftClick = {},
                 onRightClick = {}
             )
