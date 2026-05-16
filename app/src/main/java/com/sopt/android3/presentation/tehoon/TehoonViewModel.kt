@@ -106,7 +106,7 @@ class TehoonViewModel : ViewModel() {
 
         _uiState.update { currentState ->
             currentState.copy(
-                gomin = dummyPosts[currentPostIndex]
+                gomin = currentPosts[currentPostIndex]
             )
         }
     }
