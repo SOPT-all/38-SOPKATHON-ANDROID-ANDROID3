@@ -26,7 +26,7 @@ fun MainNavHost(
     ) {
         NavHost(
             navController = navController,
-            startDestination = "tehoon",
+            startDestination = "yeseul",
         ) {
             composable(route = "tehoon") {
                 TehoonRoute(
