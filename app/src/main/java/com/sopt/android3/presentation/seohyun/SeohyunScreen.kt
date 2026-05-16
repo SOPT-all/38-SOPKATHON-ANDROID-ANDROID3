@@ -1,12 +1,27 @@
 package com.sopt.android3.presentation.seohyun
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.compose.ImagePainter
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 import com.sopt.android3.core.util.noRippleClickable
 
@@ -24,18 +39,60 @@ fun SeohyunScreen(
     modifier: Modifier = Modifier,
     navigateToYeseul: () -> Unit = {}
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(
-                color = SopkathonTheme.colors.white
-            )
+    LazyColumn(
+        modifier = modifier.padding(horizontal = 30.dp)
     ) {
-        Text(
-            text = "Seohyun Screen",
-            modifier = Modifier
-                .noRippleClickable(onClick = navigateToYeseul)
-        )
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = SopkathonTheme.colors.white)
+            ) {
+                Column(
+                    modifier = Modifier.padding(top = 30.dp)
+                ) {
+                    Row {
+                        Text(text = "#슬픔")
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(text = "#그리움")
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text("제목")
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text("본문")
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Column {
+                    Row {
+                        Box(
+                            modifier = Modifier
+                                .clip(shape = RoundedCornerShape(50.dp))
+                                .background(Color.White)
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column {
+                            Text(text = "작성자")
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Text(text = "댓글")
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                Row {
+                    Button(onClick = {}) {
+                        Text(text = "남겨 놓기")
+                    }
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Button(onClick = navigateToYeseul) {
+                        Text(text = "소각하기")
+                    }
+                }
+            }
+        }
     }
 }
 
