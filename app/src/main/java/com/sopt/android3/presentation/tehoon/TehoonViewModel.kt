@@ -51,6 +51,14 @@ class TehoonViewModel : ViewModel() {
         }
     }
 
+    fun tehoonPost() {
+        changeToNextGomin()
+    }
+
+    fun onChangedValue(value : String) {
+        _uiState.update { it.copy(textfieldText = value) }
+    }
+
     private fun example() {
         viewModelScope.launch {
             try {
