@@ -1,19 +1,22 @@
 package com.sopt.android3.core.designsystem.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.android3.R
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
@@ -23,14 +26,18 @@ fun LogoTopBar(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(
+                vertical = 10.dp,
+                horizontal = 12.dp,
+            ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(
-            imageVector = Icons.Filled.Home, // 로고
+        Image(
+            painter = painterResource(R.drawable.img_logo_header),
             contentDescription = null,
-            modifier = Modifier.padding(start = 20.dp)
+            modifier = Modifier.size(36.dp),
         )
 
         IconButton(
@@ -38,9 +45,9 @@ fun LogoTopBar(
             modifier = Modifier,
         ) {
             Icon(
-                imageVector = Icons.Filled.AccountCircle, // 내 기록
+                imageVector = ImageVector.vectorResource(R.drawable.ic_header_send),
                 contentDescription = null,
-                modifier = Modifier.padding(end = 17.dp)
+                modifier = Modifier.size(24.dp)
             )
         }
     }

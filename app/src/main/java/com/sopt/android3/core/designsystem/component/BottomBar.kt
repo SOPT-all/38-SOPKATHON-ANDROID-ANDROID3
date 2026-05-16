@@ -8,16 +8,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.android3.R
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 import com.sopt.android3.core.util.noRippleClickable
 
@@ -46,7 +46,7 @@ fun BottomBar(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Home,
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_nav_write),
                     contentDescription = null,
                     tint = if(onSelected == 0) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
@@ -70,7 +70,7 @@ fun BottomBar(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    imageVector = Icons.Filled.AddCircle,
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_nav_trash),
                     contentDescription = null,
                     tint = if(onSelected == 1) SopkathonTheme.colors.gray400 else SopkathonTheme.colors.staticblack
                 )
