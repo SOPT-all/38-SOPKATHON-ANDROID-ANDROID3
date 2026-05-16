@@ -18,7 +18,7 @@ fun TehoonRoute(
 ) {
     TehoonScreen(
         navigateToYeseul = navigateToYeseul,
-        navigateToJotehyun = navigateToYeseul,
+        navigateToJotehyun = navigateToJotehyun,
         navigateToSeohyun = navigateToSeohyun,
     )
 }
@@ -33,9 +33,7 @@ fun TehoonScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(
-                color = SopkathonTheme.colors.gray400
-            )
+            .background(color = SopkathonTheme.colors.staticwhite)
     ) {
         Text(
             text = "Tehoon Screen",

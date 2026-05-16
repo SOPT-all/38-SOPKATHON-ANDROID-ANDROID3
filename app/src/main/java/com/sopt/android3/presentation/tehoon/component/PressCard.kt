@@ -1,4 +1,4 @@
-package com.sopt.android3.core.designsystem.component.card
+package com.sopt.android3.presentation.tehoon.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -21,10 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.android3.R
+import com.sopt.android3.core.designsystem.component.card.Hashtag
 import com.sopt.android3.core.designsystem.theme.SopkathonTheme
 
 @Composable
-fun Card(
+fun PressCard(
     nickname: String,
     content: String,
     @DrawableRes thumbnail: Int,
@@ -46,6 +47,9 @@ fun Card(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .matchParentSize()
+                .background(
+                    color = Color.Black.copy(alpha = 0.73f)
+                )
                 .padding(
                     vertical = 30.dp,
                     horizontal = 26.dp,
@@ -81,9 +85,9 @@ fun Card(
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
-private fun CardPreview() {
+private fun PressCardPreview() {
     SopkathonTheme {
-        Card(
+        PressCard(
             nickname = "익명A",
             content = "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
             thumbnail = R.drawable.img_card,
