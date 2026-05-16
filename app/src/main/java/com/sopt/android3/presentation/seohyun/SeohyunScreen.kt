@@ -122,7 +122,7 @@ fun SeohyunScreen(
                         PostBundle(
                             post = post,
                             imageRes = postCardImages[index % postCardImages.size],
-                            onBurnClick = viewModel::burnTopPost,
+                            onBurnClick = { viewModel.burnPost(post.postId) },
                             modifier = Modifier.animateItem(
                                 fadeOutSpec = tween(durationMillis = 400),
                                 placementSpec = spring(
