@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -117,12 +118,13 @@ fun SeohyunScreen(
                         .padding(horizontal = 20.dp),
                     verticalArrangement = Arrangement.spacedBy(23.dp)
                 ) {
-                    items(uiState.posts, key = { it.postId }) { post ->
+                    itemsIndexed(uiState.posts, key = { _, post -> post.postId }) { index, post ->
                         PostBundle(
                             post = post,
+                            imageRes = postCardImages[index % postCardImages.size],
                             onBurnClick = viewModel::burnTopPost,
                             modifier = Modifier.animateItem(
-                                fadeOutSpec = tween(durationMillis = 800),
+                                fadeOutSpec = tween(durationMillis = 400),
                                 placementSpec = spring(
                                     dampingRatio = Spring.DampingRatioMediumBouncy,
                                     stiffness = Spring.StiffnessMediumLow
@@ -142,9 +144,16 @@ private val dummyUserIds = listOf(
     "익명_qo", "익명_jo", "익명_ko", "익명_di", "익명_fj"
 )
 
+private val postCardImages = listOf(
+    R.drawable.img_seohyun_01,
+    R.drawable.img_seohyun_02,
+    R.drawable.img_seohyun_03,
+)
+
 @Composable
 private fun PostBundle(
     post: PostUiModel,
+    imageRes: Int,
     onBurnClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -154,6 +163,7 @@ private fun PostBundle(
     ) {
         SeohyunCard(
             content = post.content,
+            imageRes = imageRes,
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(320.dp)
@@ -205,6 +215,7 @@ private fun PostBundle(
 @Composable
 private fun SeohyunCard(
     content: String,
+    imageRes: Int,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -212,7 +223,7 @@ private fun SeohyunCard(
             .clip(RoundedCornerShape(12.dp))
     ) {
         Image(
-            painter = painterResource(id = R.drawable.img_card),
+            painter = painterResource(id = imageRes),
             contentDescription = null,
             modifier = Modifier.matchParentSize(),
             contentScale = ContentScale.Crop
@@ -222,7 +233,6 @@ private fun SeohyunCard(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .matchParentSize()
-                .background(color = Color.Black.copy(alpha = 0.73f))
                 .padding(vertical = 30.dp, horizontal = 26.dp),
         ) {
             Spacer(modifier = Modifier.weight(1f))
