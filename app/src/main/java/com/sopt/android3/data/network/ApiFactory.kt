@@ -3,6 +3,7 @@ package com.sopt.android3.data.network
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sopt.android3.BuildConfig
 import com.sopt.android3.data.service.ExampleService
+import com.sopt.android3.data.service.SeohyunService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -37,4 +38,5 @@ object ApiFactory {
 
 object ServicePool {
     val exampleService = ApiFactory.create<ExampleService>()
+    val SeohyunService = ApiFactory.create< SeohyunService>()
 }
