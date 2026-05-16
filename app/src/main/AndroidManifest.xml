@@ -16,6 +16,7 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/app_name"
             android:theme="@style/Theme.SoptHackAndroid3">
             <intent-filter>
