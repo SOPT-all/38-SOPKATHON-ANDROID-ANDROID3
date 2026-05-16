@@ -1,5 +1,6 @@
 package com.sopt.android3.core.designsystem.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ fun BottomBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .background(SopkathonTheme.colors.gray100)
             .height(70.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,

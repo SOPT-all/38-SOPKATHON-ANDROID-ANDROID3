@@ -2,6 +2,7 @@ package com.sopt.android3.presentation.yeseul
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sopt.android3.data.dto.request.HomeRequest
 import com.sopt.android3.data.network.ServicePool
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,29 +10,56 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class YeseulViewModel: ViewModel() {
-    // 이거 ServicePool에서 꺼내는 Service 만들어서 써야돼요! 이거 바꿔야됨 (변수명도 바꿔주세용)
-    private val exampleServce = ServicePool.exampleService
+class YeseulViewModel : ViewModel() {
+    private val homeService = ServicePool.homeService
     private val _uiState = MutableStateFlow(YeseulUiState())
     val uiState: StateFlow<YeseulUiState> = _uiState.asStateFlow()
 
-    private fun example() {
+    fun postMemory(content: String) {
+        _uiState.update { it.copy(isLoading = true, error = null, isSuccess = false) }
+
         viewModelScope.launch {
-            //request 는 따로 데이터 담아서 보내면 되고, 이런식으로 service 객체에서 함수 뽑아 쓰면 됩니다
-//            val response = exampleService.postExampleData(request)
+            try {
+                val request = HomeRequest(
+                    title = "",
+                    content = content,
+                )
 
-            try{
+                val response = homeService.postHomeData(request)
 
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    val postId = body?.data?.postId
+
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            isSuccess = true
+                        )
+                    }
+                } else {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            isSuccess = false,
+                            error = "서버 에러가 발생했습니다."
+                        )
+                    }
+                }
             } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
                         isLoading = false,
                         isSuccess = false,
-                        error = e.message ?: "example failed"
+                        error = e.message ?: "메시지 전송에 실패했습니다."
                     )
                 }
             }
         }
+    }
+
+    fun resetUiState() {
+        _uiState.update { YeseulUiState() }
     }
 }
 
