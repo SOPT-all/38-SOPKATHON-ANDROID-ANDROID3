@@ -83,7 +83,7 @@ fun YeseulScreen(
 
         LogoTopBar(
             onClick = navigateToSeohyun,
-            modifier = Modifier.align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.TopCenter).height(56.dp)
         )
 
         Column(
